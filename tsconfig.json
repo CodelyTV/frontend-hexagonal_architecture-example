@@ -23,6 +23,7 @@
   },
   "include": [
     "src",
+    "modules",
     "tests",
     "jest.config.js",
     "cypress.config.ts"
