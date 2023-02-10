@@ -25,7 +25,7 @@
     "src",
     "modules",
     "tests",
-    "jest.config.js",
-    "cypress.config.ts"
+    "object-oriented/jest.config.js",
+    "object-oriented/cypress.config.ts"
   ]
 }
