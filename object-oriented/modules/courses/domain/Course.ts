@@ -1,9 +1,10 @@
-export interface Course {
-	name: string;
-}
+import { ImageUrl } from "../../shared/domain/ImageUrl";
+import { CourseId } from "./CourseId";
 
-export function createCourse(name: string): Course {
-	return {
-		name,
-	};
+export class Course {
+	constructor(
+		private readonly id: CourseId,
+		private readonly name: string,
+		private readonly imageUrl: ImageUrl
+	) {}
 }

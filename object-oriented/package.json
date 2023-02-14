@@ -23,7 +23,9 @@
       "react-app/jest",
       "eslint-config-codely/typescript"
     ],
-    "plugins": ["hexagonal-architecture"],
+    "plugins": [
+      "hexagonal-architecture"
+    ],
     "parserOptions": {
       "project": [
         "./tsconfig.json"
@@ -58,7 +60,9 @@
           "**/modules/**/*.ts"
         ],
         "rules": {
-          "hexagonal-architecture/enforce": ["error"]
+          "hexagonal-architecture/enforce": [
+            "error"
+          ]
         }
       }
     ]
