@@ -1,14 +1,10 @@
-import { Course } from "../../../modules/courses/domain/Course";
+import { AllCoursesGetter } from "../../modules/courses/application/get-all/AllCoursesGetter";
+import { Course } from "../../modules/courses/domain/Course";
+import { LocalStorageCourseRepository } from "../../modules/courses/infrastructure/LocalStorageCourseRepository";
 
 export function useCourses(): Course[] {
-	return [
-		{ name: "Tratamiento de datos en Bash: Gestiona archivos JSON, XML, YAML" },
-		{ name: "React de 0 aplicando buenas prácticast de 0 aplicando buenas prácticas" },
-		{ name: "Auditoría Holaluz" },
-		{ name: "API HTTP en Kotlin aplicando Arquitectura Hexagonal" },
-		{ name: "DDD en TypeScript: Comunicación entre servicios y aplicaciones" },
-		{ name: "Desarrolla plugins de Figma con TypeScript" },
-		{ name: "Linting en JavaScript y TypeScript" },
-		{ name: "Patrones de Diseño de Comportamiento" },
-	];
+	const repository = new LocalStorageCourseRepository();
+	const allCoursesGetter = new AllCoursesGetter(repository);
+
+	return allCoursesGetter.get();
 }
