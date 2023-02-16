@@ -1,15 +1,17 @@
+import { Primitives } from "@codelytv/primitives-type";
+
 import { ImageUrl } from "../../shared/domain/ImageUrl";
 import { CourseId } from "./CourseId";
 import { CourseName } from "./CourseName";
 
 export class Course {
 	private constructor(
-		private readonly id: CourseId,
-		private readonly name: CourseName,
-		private readonly imageUrl: ImageUrl
+		readonly id: CourseId,
+		readonly name: CourseName,
+		readonly imageUrl: ImageUrl
 	) {}
 
-	public static create(id: string, name: string, imageUrl: string): Course {
+	public static create({ id, name, imageUrl }: Primitives<Course>): Course {
 		return new Course(new CourseId(id), new CourseName(name), new ImageUrl(imageUrl));
 	}
 
@@ -23,5 +25,13 @@ export class Course {
 
 	imageUrlValue(): string {
 		return this.imageUrl.value;
+	}
+
+	toPrimitives(): Primitives<Course> {
+		return {
+			id: this.id.value,
+			name: this.name.value,
+			imageUrl: this.imageUrl.value,
+		};
 	}
 }

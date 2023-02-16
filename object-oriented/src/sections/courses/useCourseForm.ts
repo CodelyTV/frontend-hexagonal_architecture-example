@@ -30,8 +30,6 @@ export function useCourseForm(): {
 			courseCreator.create(uuid, formData.name, formData.imageUrl);
 			setFormStatus(FormStatus.Success);
 		} catch (e) {
-			console.log(e);
-
 			setFormStatus(FormStatus.Error);
 		}
 	}
