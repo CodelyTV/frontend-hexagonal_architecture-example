@@ -2,7 +2,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import { CourseCreator } from "../../modules/courses/application/create/CourseCreator";
-import { LocalStorageCourseRepository } from "../../modules/courses/infrastructure/LocalStorageCourseRepository";
+import { CourseRepository } from "../../modules/courses/domain/CourseRepository";
 
 export const enum FormStatus {
 	Loading,
@@ -11,7 +11,7 @@ export const enum FormStatus {
 	Initial,
 }
 
-export function useCourseForm(): {
+export function useCourseForm(repository: CourseRepository): {
 	formStatus: FormStatus;
 	submitForm: (formData: { title: string; imageUrl: string }) => void;
 	resetFormStatus: () => void;
@@ -22,7 +22,6 @@ export function useCourseForm(): {
 		setFormStatus(FormStatus.Loading);
 
 		// submit form
-		const repository = new LocalStorageCourseRepository();
 		const courseCreator = new CourseCreator(repository);
 
 		try {

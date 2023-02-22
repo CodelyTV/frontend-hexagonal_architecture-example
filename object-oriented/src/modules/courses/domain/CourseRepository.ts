@@ -4,7 +4,7 @@ import { CourseId } from "./CourseId";
 export interface CourseRepository {
 	save(course: Course): void;
 
-	get(id: CourseId): Course | null;
+	get(id: CourseId): Course | null | Promise<Course | null>;
 
-	getAll(): Course[];
+	getAll(): Course[] | Promise<Course[]>;
 }

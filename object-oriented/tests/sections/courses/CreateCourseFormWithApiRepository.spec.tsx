@@ -1,13 +1,20 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { LocalStorageCourseRepository } from "../../../src/modules/courses/infrastructure/LocalStorageCourseRepository";
 import { CreateCourseForm } from "../../../src/sections/courses/CreateCourseForm";
 
 describe("CreateCourseForm component", () => {
 	it("displays success message when data is correct", async () => {
-		const repository = new LocalStorageCourseRepository();
-		render(<CreateCourseForm repository={repository} />);
+		const save = jest.fn();
+		render(
+			<CreateCourseForm
+				repository={{
+					save,
+					get: jest.fn(),
+					getAll: jest.fn(),
+				}}
+			/>
+		);
 
 		const titleInput = screen.getByLabelText(/title/i);
 		userEvent.type(titleInput, "Awesome Hexagonal Architecture");
@@ -20,7 +27,7 @@ describe("CreateCourseForm component", () => {
 		userEvent.click(submitButton);
 
 		const successMessage = await screen.findByRole("heading", { name: /Course created/i });
-
+		expect(save).toHaveBeenCalled();
 		expect(successMessage).toBeInTheDocument();
 	});
 });

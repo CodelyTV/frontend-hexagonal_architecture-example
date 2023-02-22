@@ -1,9 +1,11 @@
+import { LocalStorageCourseRepository } from "./modules/courses/infrastructure/LocalStorageCourseRepository";
 import { CourseCard } from "./sections/courses/CourseCard";
 import { CreateCourseForm } from "./sections/courses/CreateCourseForm";
 import { useCourses } from "./sections/courses/useCourses";
 
 export function App() {
 	const courses = useCourses();
+	const courseRepository = new LocalStorageCourseRepository();
 
 	return (
 		<div className="App">
@@ -14,7 +16,7 @@ export function App() {
 				<CourseCard key={course.idValue()} course={course} />
 			))}
 
-			<CreateCourseForm />
+			<CreateCourseForm repository={courseRepository} />
 		</div>
 	);
 }
