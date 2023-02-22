@@ -5,7 +5,7 @@ import { FormStatus, useCourseForm } from "./useCourseForm";
 import { useCourseFormData } from "./useCourseFormData";
 
 const initialState = {
-	name: "",
+	title: "",
 	imageUrl: "",
 };
 
@@ -45,14 +45,14 @@ export function CreateCourseForm() {
 						}}
 					>
 						<div>
-							<label htmlFor="name">name</label>
+							<label htmlFor="title">Course title</label>
 							<input
-								id="name"
-								name="name"
+								id="title"
+								name="title"
 								type="text"
-								value={formData.name}
+								value={formData.title}
 								onChange={(ev) => {
-									updateForm({ name: ev.target.value });
+									updateForm({ title: ev.target.value });
 								}}
 							/>
 							{/* {formData.postcode && errors.postcode && (
@@ -60,7 +60,7 @@ export function CreateCourseForm() {
 							)} */}
 						</div>
 						<div>
-							<label htmlFor="name">Image URL</label>
+							<label htmlFor="imageUrl">Image URL</label>
 							<input
 								id="imageUrl"
 								name="imageUrl"
@@ -75,7 +75,7 @@ export function CreateCourseForm() {
 							)} */}
 						</div>
 
-						<button type="submit">Order</button>
+						<button type="submit">Create course</button>
 					</form>
 				</section>
 			);

@@ -1,4 +1,4 @@
-export class CourseName {
+export class CourseTitle {
 	readonly MAX_COURSE_LENGTH = 40;
 
 	constructor(readonly value: string) {

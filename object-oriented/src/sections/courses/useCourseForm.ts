@@ -13,12 +13,12 @@ export const enum FormStatus {
 
 export function useCourseForm(): {
 	formStatus: FormStatus;
-	submitForm: (formData: { name: string; imageUrl: string }) => void;
+	submitForm: (formData: { title: string; imageUrl: string }) => void;
 	resetFormStatus: () => void;
 } {
 	const [formStatus, setFormStatus] = useState(FormStatus.Initial);
 
-	function submitForm(formData: { name: string; imageUrl: string }) {
+	function submitForm(formData: { title: string; imageUrl: string }) {
 		setFormStatus(FormStatus.Loading);
 
 		// submit form
@@ -27,7 +27,7 @@ export function useCourseForm(): {
 
 		try {
 			const uuid = (uuidv4 as () => string)(); // TODO: check uuid types
-			courseCreator.create(uuid, formData.name, formData.imageUrl);
+			courseCreator.create(uuid, formData.title, formData.imageUrl);
 			setFormStatus(FormStatus.Success);
 		} catch (e) {
 			setFormStatus(FormStatus.Error);
