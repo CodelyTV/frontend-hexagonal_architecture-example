@@ -5,6 +5,7 @@ export const useCourseFormData = <T>(
 ): {
 	formData: T;
 	updateForm: (value: Partial<T>) => void;
+	resetForm: () => void;
 } => {
 	const [formData, setFormData] = useState(initialState);
 
@@ -14,8 +15,13 @@ export const useCourseFormData = <T>(
 		});
 	};
 
+	const resetForm = () => {
+		setFormData(initialState);
+	};
+
 	return {
 		formData,
 		updateForm,
+		resetForm,
 	};
 };

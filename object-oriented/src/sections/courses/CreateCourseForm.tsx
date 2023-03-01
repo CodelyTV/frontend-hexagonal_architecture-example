@@ -10,7 +10,7 @@ const initialState = {
 };
 
 export function CreateCourseForm() {
-	const { formData, updateForm } = useCourseFormData(initialState);
+	const { formData, updateForm, resetForm } = useCourseFormData(initialState);
 	const { formStatus, submitForm, resetFormStatus } = useCourseForm();
 	const [errors, setErrors] = useState(initialState);
 
@@ -21,17 +21,24 @@ export function CreateCourseForm() {
 		});
 	}, [formData]);
 
-	const handleSubmit = (ev: React.FormEvent) => {
+	const handleSubmit = async (ev: React.FormEvent) => {
 		ev.preventDefault();
 
-		submitForm(formData);
+		await submitForm(formData);
 	};
 
 	switch (formStatus) {
 		case FormStatus.Loading:
 			return <Spinner />;
 		case FormStatus.Success:
-			return <SuccessNotification resetForm={resetFormStatus} />;
+			return (
+				<SuccessNotification
+					resetForm={() => {
+						resetForm();
+						resetFormStatus();
+					}}
+				/>
+			);
 		case FormStatus.Error:
 			return <ErrorNotification resetForm={resetFormStatus} />;
 		case FormStatus.Initial:
