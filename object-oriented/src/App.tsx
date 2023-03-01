@@ -4,7 +4,7 @@ import { CreateCourseForm } from "./sections/courses/CreateCourseForm";
 import { useCourses } from "./sections/courses/useCourses";
 
 export function App() {
-	const courses = useCourses();
+	const { courses } = useCourses();
 	const courseRepository = new LocalStorageCourseRepository();
 
 	return (

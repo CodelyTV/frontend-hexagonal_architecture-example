@@ -4,9 +4,9 @@ import { CourseRepository } from "../../domain/CourseRepository";
 export class CourseCreator {
 	constructor(private readonly repository: CourseRepository) {}
 
-	create(id: string, title: string, imageUrl: string): void {
+	async create(id: string, title: string, imageUrl: string): Promise<void> {
 		const course = Course.create({ id, title, imageUrl });
 
-		this.repository.save(course);
+		await this.repository.save(course);
 	}
 }

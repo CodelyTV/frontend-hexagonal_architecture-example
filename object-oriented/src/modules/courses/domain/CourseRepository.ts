@@ -2,9 +2,9 @@ import { Course } from "./Course";
 import { CourseId } from "./CourseId";
 
 export interface CourseRepository {
-	save(course: Course): void;
+	save(course: Course): Promise<void>;
 
-	get(id: CourseId): Course | null | Promise<Course | null>;
+	get(id: CourseId): Promise<Course | null>;
 
-	getAll(): Course[] | Promise<Course[]>;
+	getAll(): Promise<Course[]>;
 }

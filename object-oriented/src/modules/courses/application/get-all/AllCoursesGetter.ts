@@ -4,7 +4,7 @@ import { CourseRepository } from "../../domain/CourseRepository";
 export class AllCoursesGetter {
 	constructor(private readonly repository: CourseRepository) {}
 
-	get(): Course[] {
+	async get(): Promise<Course[]> {
 		return this.repository.getAll();
 	}
 }

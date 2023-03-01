@@ -5,30 +5,32 @@ import { CourseId } from "../domain/CourseId";
 import { CourseRepository } from "../domain/CourseRepository";
 
 export class LocalStorageCourseRepository implements CourseRepository {
-	save(course: Course): void {
+	async save(course: Course): Promise<void> {
 		const courses = this.getAllFromLocalStorage();
 		const coursePrimitives = course.toPrimitives();
 
 		courses.set(coursePrimitives.id, coursePrimitives);
 
 		localStorage.setItem("courses", JSON.stringify(Array.from(courses.entries())));
+
+		return Promise.resolve();
 	}
 
-	get(id: CourseId): Course | null {
+	async get(id: CourseId): Promise<Course | null> {
 		const courses = this.getAllFromLocalStorage();
 		const course = courses.get(id.value);
 
 		if (!course) {
-			return null;
+			return Promise.resolve(null);
 		}
 
-		return Course.create(course);
+		return Promise.resolve(Course.create(course));
 	}
 
-	getAll(): Course[] {
+	async getAll(): Promise<Course[]> {
 		const courses = this.getAllFromLocalStorage();
 
-		return Array.from(courses.values()).map((course) => Course.create(course));
+		return Promise.resolve(Array.from(courses.values()).map((course) => Course.create(course)));
 	}
 
 	private getAllFromLocalStorage(): Map<string, Primitives<Course>> {
