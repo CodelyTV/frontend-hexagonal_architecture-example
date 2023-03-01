@@ -1,13 +1,18 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
+import { CoursesContextProvider } from "../../../src/CoursesContext";
 import { LocalStorageCourseRepository } from "../../../src/modules/courses/infrastructure/LocalStorageCourseRepository";
 import { CreateCourseForm } from "../../../src/sections/courses/CreateCourseForm";
 
 describe("CreateCourseForm component", () => {
 	it("displays success message when data is correct", async () => {
 		const repository = new LocalStorageCourseRepository();
-		render(<CreateCourseForm repository={repository} />);
+		render(
+			<CoursesContextProvider repository={repository}>
+				<CreateCourseForm />
+			</CoursesContextProvider>
+		);
 
 		const titleInput = screen.getByLabelText(/title/i);
 		userEvent.type(titleInput, "Awesome Hexagonal Architecture");

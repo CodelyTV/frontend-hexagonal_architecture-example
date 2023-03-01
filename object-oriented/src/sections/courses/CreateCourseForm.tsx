@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-import { CourseRepository } from "../../modules/courses/domain/CourseRepository";
 import { Spinner } from "../shared/Spinner";
 import { FormStatus, useCourseForm } from "./useCourseForm";
 import { useCourseFormData } from "./useCourseFormData";
@@ -10,9 +9,9 @@ const initialState = {
 	imageUrl: "",
 };
 
-export function CreateCourseForm({ repository }: { repository: CourseRepository }) {
+export function CreateCourseForm() {
 	const { formData, updateForm } = useCourseFormData(initialState);
-	const { formStatus, submitForm, resetFormStatus } = useCourseForm(repository);
+	const { formStatus, submitForm, resetFormStatus } = useCourseForm();
 	const [errors, setErrors] = useState(initialState);
 
 	useEffect(() => {

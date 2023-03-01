@@ -1,22 +1,20 @@
+import { CoursesContextProvider } from "./CoursesContext";
 import { LocalStorageCourseRepository } from "./modules/courses/infrastructure/LocalStorageCourseRepository";
-import { CourseCard } from "./sections/courses/CourseCard";
+import { CoursesList } from "./sections/courses/CoursesList";
 import { CreateCourseForm } from "./sections/courses/CreateCourseForm";
-import { useCourses } from "./sections/courses/useCourses";
 
 export function App() {
-	const { courses } = useCourses();
-	const courseRepository = new LocalStorageCourseRepository();
+	const repository = new LocalStorageCourseRepository();
 
 	return (
-		<div className="App">
-			<h3>🌱⚛️ Create React App Codely template example</h3>
-			<h2>Current courses</h2>
+		<CoursesContextProvider repository={repository}>
+			<div className="App">
+				<h3>🌱⚛️ Create React App Codely template example</h3>
+				<h2>Current courses</h2>
 
-			{courses.map((course) => (
-				<CourseCard key={course.idValue()} course={course} />
-			))}
-
-			<CreateCourseForm repository={courseRepository} />
-		</div>
+				<CoursesList />
+				<CreateCourseForm />
+			</div>
+		</CoursesContextProvider>
 	);
 }

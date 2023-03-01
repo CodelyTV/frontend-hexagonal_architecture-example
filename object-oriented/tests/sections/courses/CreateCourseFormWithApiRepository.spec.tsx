@@ -1,19 +1,22 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
+import { CoursesContextProvider } from "../../../src/CoursesContext";
 import { CreateCourseForm } from "../../../src/sections/courses/CreateCourseForm";
 
 describe("CreateCourseForm component", () => {
 	it("displays success message when data is correct", async () => {
 		const save = jest.fn();
 		render(
-			<CreateCourseForm
+			<CoursesContextProvider
 				repository={{
 					save,
 					get: jest.fn(),
 					getAll: jest.fn(),
 				}}
-			/>
+			>
+				<CreateCourseForm />
+			</CoursesContextProvider>
 		);
 
 		const titleInput = screen.getByLabelText(/title/i);
