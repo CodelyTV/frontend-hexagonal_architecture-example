@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
 
+import {
+	isCourseImageUrlValid,
+	isCourseTitleValid,
+	TITLE_MAX_LENGTH,
+	TITLE_MIN_LENGTH,
+} from "../../modules/courses/domain/Course";
 import { Spinner } from "../shared/Spinner";
 import { FormStatus, useCourseForm } from "./useCourseForm";
 import { useCourseFormData } from "./useCourseFormData";
@@ -15,9 +21,14 @@ export function CreateCourseForm() {
 	const [errors, setErrors] = useState(initialState);
 
 	useEffect(() => {
-		// validations
+		const isTitleValid = isCourseTitleValid(formData.title);
+		const isImageUrlValid = isCourseImageUrlValid(formData.imageUrl);
+
 		setErrors({
-			...errors,
+			title: isTitleValid
+				? ""
+				: `Title must be between ${TITLE_MIN_LENGTH} and ${TITLE_MAX_LENGTH} characters`,
+			imageUrl: isImageUrlValid ? "" : "Image url is not valid",
 		});
 	}, [formData]);
 
@@ -62,9 +73,9 @@ export function CreateCourseForm() {
 									updateForm({ title: ev.target.value });
 								}}
 							/>
-							{/* {formData.postcode && errors.postcode && (
-								<div style={{ color: "tomato" }}>{errors.postcode}</div>
-							)} */}
+							{formData.title && errors.title && (
+								<div style={{ color: "tomato" }}>{errors.title}</div>
+							)}
 						</div>
 						<div>
 							<label htmlFor="imageUrl">Image URL</label>
@@ -77,9 +88,9 @@ export function CreateCourseForm() {
 									updateForm({ imageUrl: ev.target.value });
 								}}
 							/>
-							{/* {formData.postcode && errors.postcode && (
-								<div style={{ color: "tomato" }}>{errors.postcode}</div>
-							)} */}
+							{formData.imageUrl && errors.imageUrl && (
+								<div style={{ color: "tomato" }}>{errors.imageUrl}</div>
+							)}
 						</div>
 
 						<button type="submit">Create course</button>
