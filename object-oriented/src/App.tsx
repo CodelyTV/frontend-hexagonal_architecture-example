@@ -10,8 +10,6 @@ export function App() {
 		<CoursesContextProvider repository={repository}>
 			<div className="App">
 				<h3>🌱⚛️ Create React App Codely template example</h3>
-				<h2>Current courses</h2>
-
 				<CoursesList />
 				<CreateCourseForm />
 			</div>
