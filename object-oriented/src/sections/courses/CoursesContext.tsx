@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-import { CourseCreator } from "./modules/courses/application/create/CourseCreator";
-import { AllCoursesGetter } from "./modules/courses/application/get-all/AllCoursesGetter";
-import { Course } from "./modules/courses/domain/Course";
-import { CourseRepository } from "./modules/courses/domain/CourseRepository";
+import { CourseCreator } from "../../modules/courses/application/create/CourseCreator";
+import { AllCoursesGetter } from "../../modules/courses/application/get-all/AllCoursesGetter";
+import { Course } from "../../modules/courses/domain/Course";
+import { CourseRepository } from "../../modules/courses/domain/CourseRepository";
 
 export interface ContextState {
 	courses: Course[];

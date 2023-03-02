@@ -5,7 +5,7 @@
 </p>
 
 <h1 align="center">
-  🪩 Hexagonal Architecture example: Object Oriented
+  🪩 Hexagonal Architecture example: Functional Basic
 </h1>
 
 <p align="center">
@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  App created with the <a href="https://github.com/CodelyTV/cra-template-codely">🌱⚛️ Create React App Codely template</a> 
+  App created with the <a href="https://github.com/CodelyTV/cra-template-codely">🌱⚛️ Create React App Codely template</a>
 </p>
 
 ## 🚀 Run the app
