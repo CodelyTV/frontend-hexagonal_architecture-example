@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 
+import { isCourseImageUrlValid } from "../../modules/courses/domain/CourseImageUrl";
 import {
-	isCourseImageUrlValid,
 	isCourseTitleValid,
 	TITLE_MAX_LENGTH,
 	TITLE_MIN_LENGTH,
-} from "../../modules/courses/domain/Course";
+} from "../../modules/courses/domain/CourseTitle";
 import { Spinner } from "../shared/Spinner";
 import { FormStatus, useCourseForm } from "./useCourseForm";
 import { useCourseFormData } from "./useCourseFormData";
@@ -32,10 +32,10 @@ export function CreateCourseForm() {
 		});
 	}, [formData]);
 
-	const handleSubmit = async (ev: React.FormEvent) => {
+	const handleSubmit = (ev: React.FormEvent) => {
 		ev.preventDefault();
 
-		await submitForm(formData);
+		submitForm(formData);
 	};
 
 	switch (formStatus) {

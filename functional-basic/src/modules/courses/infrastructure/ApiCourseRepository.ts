@@ -10,7 +10,7 @@ export function createApiCourseRepository(): CourseRepository {
 }
 
 async function save(course: Course) {
-	await fetch("https://awesome-codely-courses.com/api/courses/create", {
+	await fetch("/api/courses/create", {
 		method: "POST",
 		body: JSON.stringify({
 			id: course.id,
@@ -21,7 +21,7 @@ async function save(course: Course) {
 }
 
 async function get(id: string) {
-	const course = await fetch(`https://awesome-codely-courses.com/api/courses/${id}`).then(
+	const course = await fetch(`/api/courses/${id}`).then(
 		(response) => response.json() as Promise<Course>
 	);
 
@@ -29,7 +29,7 @@ async function get(id: string) {
 }
 
 async function getAll() {
-	const courses = await fetch("https://awesome-codely-courses.com/api/courses").then(
+	const courses = await fetch("/api/courses").then(
 		(response) => response.json() as Promise<Course[]>
 	);
 
