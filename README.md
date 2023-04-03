@@ -19,11 +19,23 @@
 
 ## Hexagonal architecture: what is it and benefits
 
-## Approaches
+Hexagonal architecture, also known as "ports and adapters", is a software design approach that separates the internal workings of a system from its external interactions. In frontend development, this architecture pattern is used to structure the frontend code in a way that allows for modularity, testability, and ease of maintenance. The main idea behind the hexagonal architecture in frontend is to create a clear separation between the presentation layer and the application logic, allowing developers to make changes to either layer without affecting the other.
 
-### Functional
+The benefits of using hexagonal architecture in frontend development include increased testability, as the application logic is not coupled to the infrastructure (calls to an API, usage of local storage, etc.). This also makes it easier to maintain the code, as changes to the presentation layer or the application logic can be made without affecting the other. Additionally, the modular structure of the hexagonal architecture pattern allows for easier scaling and improved flexibility, as new features can be added or existing ones can be updated without having to make changes to the underlying architecture. Furthermore, the clear separation between the presentation layer and the application logic makes it easier for multiple developers to work on the same project, as they can focus on their specific areas of responsibility without affecting other parts of the code.
 
-### Object-oriented
+## Approach
+
+While Hexagonal Architecture doesn't talk about layers, we like to organize our code in 3 separate layers:
+
+- **Domain layer**: Core logic and concepts of the application, independent of implementation technology, includes business rules, data models, and behaviors.
+- **Application layer**: Implements use cases and features using the domain layer.
+- **Infrastructure layer**: Provides abstraction between the app and external systems, enabling flexible and modular interaction via libraries, APIs, etc. Allows easy replacement/upgrade of external systems without affecting core functionality.
+
+This repository shows how we can apply Hexagonal Architecture independently of the programming paradigm, with different examples:
+
+- `object-oriented`: follows object-oriented paradigm with the use of classes, value objetcs, etc.
+- `functional-basic`: avoids the use of classes, using functions instead
+- `functional-currying`: same as the previous one but it uses currying for dependency injection
 
 ## 🌈 Tech Stack
 
