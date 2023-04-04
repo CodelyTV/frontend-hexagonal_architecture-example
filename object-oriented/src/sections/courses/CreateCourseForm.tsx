@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+import { CourseImageUrl } from "../../modules/courses/domain/CourseImageUrl";
+import { CourseTitle } from "../../modules/courses/domain/CourseTitle";
 import { Spinner } from "../shared/Spinner";
 import { FormStatus, useCourseForm } from "./useCourseForm";
 import { useCourseFormData } from "./useCourseFormData";
@@ -15,9 +17,12 @@ export function CreateCourseForm() {
 	const [errors, setErrors] = useState(initialState);
 
 	useEffect(() => {
-		// validations
+		const isTitleValid = CourseTitle.isValid(formData.title);
+		const isImageUrlValid = CourseImageUrl.isValid(formData.imageUrl);
+
 		setErrors({
-			...errors,
+			title: isTitleValid ? "" : CourseTitle.invalidMessage(formData.title),
+			imageUrl: isImageUrlValid ? "" : CourseImageUrl.invalidMessage(formData.imageUrl),
 		});
 	}, [formData]);
 
