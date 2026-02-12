@@ -1,18 +1,18 @@
 import { Primitives } from "@codelytv/primitives-type";
 
-import { ImageUrl } from "../../shared/domain/ImageUrl";
 import { CourseId } from "./CourseId";
+import { CourseImageUrl } from "./CourseImageUrl";
 import { CourseTitle } from "./CourseTitle";
 
 export class Course {
 	private constructor(
 		readonly id: CourseId,
 		readonly title: CourseTitle,
-		readonly imageUrl: ImageUrl
+		readonly imageUrl: CourseImageUrl
 	) {}
 
 	public static create({ id, title, imageUrl }: Primitives<Course>): Course {
-		return new Course(new CourseId(id), new CourseTitle(title), new ImageUrl(imageUrl));
+		return new Course(new CourseId(id), new CourseTitle(title), new CourseImageUrl(imageUrl));
 	}
 
 	idValue(): string {
