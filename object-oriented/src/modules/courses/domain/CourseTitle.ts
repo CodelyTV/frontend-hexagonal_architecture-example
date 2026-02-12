@@ -1,4 +1,5 @@
 export class CourseTitle {
+	static readonly MIN_COURSE_LENGTH = 5;
 	static readonly MAX_COURSE_LENGTH = 40;
 
 	constructor(readonly value: string) {
@@ -8,10 +9,12 @@ export class CourseTitle {
 	}
 
 	public static isValid(value: string): boolean {
-		return value.length > 0 && value.length <= CourseTitle.MAX_COURSE_LENGTH;
+		return (
+			value.length >= CourseTitle.MIN_COURSE_LENGTH && value.length <= CourseTitle.MAX_COURSE_LENGTH
+		);
 	}
 
 	public static invalidMessage(value: string): string {
-		return `The title [${value}] is too long. ${CourseTitle.MAX_COURSE_LENGTH} chars is the max allowed`;
+		return `Title ${value} is not valid`;
 	}
 }

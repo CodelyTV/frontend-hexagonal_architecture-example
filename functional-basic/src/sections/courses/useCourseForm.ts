@@ -11,23 +11,17 @@ export const enum FormStatus {
 
 export function useCourseForm(): {
 	formStatus: FormStatus;
-	submitForm: (formData: { title: string; imageUrl: string }) => void;
+	submitForm: (formData: { title: string; imageUrl: string }) => Promise<void>;
 	resetFormStatus: () => void;
 } {
 	const [formStatus, setFormStatus] = useState(FormStatus.Initial);
 	const { createCourse } = useCoursesContext();
 
-	function submitForm({ title, imageUrl }: { title: string; imageUrl: string }) {
+	async function submitForm({ title, imageUrl }: { title: string; imageUrl: string }) {
 		setFormStatus(FormStatus.Loading);
-
 		try {
-			createCourse({ title, imageUrl })
-				.then(() => {
-					setFormStatus(FormStatus.Success);
-				})
-				.catch(() => {
-					throw new Error("Could not create course");
-				});
+			await createCourse({ title, imageUrl });
+			setFormStatus(FormStatus.Success);
 		} catch (e) {
 			setFormStatus(FormStatus.Error);
 		}
