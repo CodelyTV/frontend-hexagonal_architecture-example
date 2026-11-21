@@ -2,10 +2,13 @@ import { createCourse } from "../../../../../src/modules/courses/application/cre
 import { CourseMother } from "../../domain/CourseMother";
 import { createCourseRepositoryMock } from "../../domain/CourseRepositoryMock";
 
+// A fixed title keeps these tests deterministic: faker sentences can exceed the max title length
+const VALID_TITLE = "Hexagonal Architecture in Frontend";
+
 describe("createCourse", () => {
 	it("saves a valid course", async () => {
 		const repository = createCourseRepositoryMock();
-		const course = CourseMother.create();
+		const course = CourseMother.create({ title: VALID_TITLE });
 
 		await createCourse(repository, course);
 
@@ -42,7 +45,7 @@ describe("createCourse", () => {
 
 	it("throws and does not save when the image url is not valid", async () => {
 		const repository = createCourseRepositoryMock();
-		const course = CourseMother.createWithInvalidImageUrl();
+		const course = { ...CourseMother.createWithInvalidImageUrl(), title: VALID_TITLE };
 
 		await expect(createCourse(repository, course)).rejects.toThrow(
 			`Image url ${course.imageUrl} is not valid`

@@ -16,10 +16,12 @@ describe("getCourse", () => {
 
 	it("returns null when the course does not exist", async () => {
 		const repository = createCourseRepositoryMock();
+		const { id } = CourseMother.create();
 		repository.get.mockResolvedValue(null);
 
-		const result = await getCourse(repository, CourseMother.create().id);
+		const result = await getCourse(repository, id);
 
+		expect(repository.get).toHaveBeenCalledWith(id);
 		expect(result).toBeNull();
 	});
 });
